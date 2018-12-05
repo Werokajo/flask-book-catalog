@@ -2,7 +2,9 @@ from app import create_app, db
 from app.auth.models import User
 from sqlalchemy import exc
 
-flask_app = create_app('prod')
+deploy_type = 'prod'
+
+flask_app = create_app(deploy_type)
 with flask_app.app_context():
     db.create_all()
     try:
@@ -10,3 +12,6 @@ with flask_app.app_context():
             User.create_user(user='harry', email='harry@potters.com', password='secret')
     except exc.IntegrityError:
         flask_app.run()
+
+if deploy_type == 'dev':
+    flask_app.run()
