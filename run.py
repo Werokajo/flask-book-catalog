@@ -2,7 +2,7 @@ from app import create_app, db
 from app.auth.models import User
 from sqlalchemy import exc
 
-deploy_type = 'prod'
+deploy_type = 'prod' # 'dev' 'prod' jeweils austauschen vor Deployment to production
 
 flask_app = create_app(deploy_type)
 with flask_app.app_context():
