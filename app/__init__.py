@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from dash import Dash
+import dash_html_components as html
 
 db = SQLAlchemy()
 bootstrap = Bootstrap()
@@ -31,5 +33,12 @@ def create_app(config_type): # dev, test or prod
 
     from app.auth import authentication
     app.register_blueprint(authentication)
+
+    # Dash integration
+    dash_app1 = Dash(__name__, server=app, url_base_pathname='/dashboard/')
+    dash_app2 = Dash(__name__, server=app, url_base_pathname='/reports/')
+    dash_app1.layout = html.Div([html.H1('Hi there, I am app1 for dashboards out of Flask')])
+    dash_app2.layout = html.Div([html.H1('Hi there, I am app2 for reports out of Flask')])
+
 
     return app
