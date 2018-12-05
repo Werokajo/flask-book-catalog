@@ -34,6 +34,8 @@ def do_the_login():
             return redirect(url_for('authentication.do_the_login'))
 
         login_user(user, form.stay_loggedin.data)
+
+
         return redirect(url_for('main.display_books'))
 
     return render_template('login.html', form=form)

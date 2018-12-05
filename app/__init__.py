@@ -8,6 +8,7 @@ from flask_bcrypt import Bcrypt
 from dash import Dash
 import dash_html_components as html
 
+
 db = SQLAlchemy()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
@@ -37,6 +38,7 @@ def create_app(config_type): # dev, test or prod
     # Dash integration
     dash_app1 = Dash(__name__, server=app, url_base_pathname='/dashboard/')
     dash_app2 = Dash(__name__, server=app, url_base_pathname='/reports/')
+
     dash_app1.layout = html.Div([html.H1('Hi there, I am app1 for dashboards out of Flask')])
     dash_app2.layout = html.Div([html.H1('Hi there, I am app2 for reports out of Flask')])
 
